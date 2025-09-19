@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "notifications")
+
 public class Notification {
     @Id
     private String id;

@@ -2,7 +2,8 @@ package org.example.controllers;
 
 
 import org.example.model.Notification;
-import org.example.service.NotificationService;
+import org.example.model.enums.Channels;
+import org.example.service.interfaces.NotificationService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -16,13 +17,14 @@ public class NotificationController {
         this.service = service;
     }
 
-    @GetMapping("/channels")
-    public List<String> getChannels() {
-        return List.of("EMAIL", "SMS", "WHATSAPP");
+    @GetMapping("/notifications/channels")
+    public List<Channels> getChannels() {
+        return List.of(Channels.values());
     }
 
     @PostMapping("/notifications")
     public Notification createNotification(@RequestBody Notification notification) {
+
         return service.save(notification);
     }
 
@@ -36,7 +38,7 @@ public class NotificationController {
         return service.findById(id);
     }
 
-    @PostMapping("/schedule")
+    @PostMapping("/notification/schedule")
     public Notification scheduleNotification(@RequestBody Notification notification) {
         // Aquí puedes implementar lógica para programar envío
         return service.save(notification);
