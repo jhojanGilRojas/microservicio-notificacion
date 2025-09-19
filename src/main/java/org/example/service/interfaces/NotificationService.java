@@ -1,18 +1,21 @@
 package org.example.service.interfaces;
 
 import org.example.model.Notification;
-import org.example.repository.NotificationRepository;
-import org.springframework.stereotype.Service;
+import org.example.model.enums.Channels;
 import java.util.List;
 
-@Service
+
 public interface NotificationService {
 
-    List<Notification> findAll();
+    List<Notification> getNotifications();
 
-    String save(Notification notification);
+    Notification getNotificationFindById(String id);
 
-    Notification findById(String id);
+    List<Channels> getChannels();
+
+    String createNotification(Notification notification);
+
+    String scheduleNotification(Notification notification);
 
 
 }

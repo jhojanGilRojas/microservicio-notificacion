@@ -1,32 +1,38 @@
 package org.example.service.implement;
 
+import lombok.RequiredArgsConstructor;
 import org.example.model.Notification;
-import org.example.repository.NotificationRepository;
+import org.example.model.enums.Channels;
 import org.example.service.interfaces.NotificationService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
-    @Override
-    public Notification findById(String id) {
-
-        return null;
-    }
 
     @Override
-    public Notification save(Notification notification) {
-        return null;
+    public Notification getNotificationFindById(String id) {
+     Notification notification = new Notification();
+        return notification;
     }
-
     @Override
-    public List<Notification> findAll() {
+    public List<Notification> getNotifications() {
         return null;
     }
-    public void NotificationService(NotificationRepository notificationRepository){
-
-
+    @Override
+    public List<Channels> getChannels(){
+        return null;
     }
+    @Override
+    public String createNotification(Notification notification){
+        return "";
+    }
+    @Override
+    public String scheduleNotification(Notification notification){
+        return "";
+    }
+
 }

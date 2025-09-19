@@ -1,21 +1,23 @@
 package org.example.controllers;
 
 
+import lombok.RequiredArgsConstructor;
+import org.example.dto.MessageDTO;
 import org.example.model.Notification;
 import org.example.model.enums.Channels;
 import org.example.service.interfaces.NotificationService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class NotificationController {
 
     private final NotificationService service;
 
-    public NotificationController(NotificationService service) {
-        this.service = service;
-    }
+
 
     @GetMapping("/notifications/channels")
     public List<Channels> getChannels() {
@@ -23,12 +25,13 @@ public class NotificationController {
     }
 
     @PostMapping("/notifications")
-    public Notification createNotification(@RequestBody Notification notification) {
+    public ResponseEntity<MessageDTO> createNotification(@RequestBody Notification notification) {
 
-        return service.save(notification);
+        return ResponseEntity.ok(new MessageDTO<>(false,"Notification create successfully"));
     }
 
     @GetMapping("/notifications")
+    //Aqui debo paginar
     public List<Notification> getAllNotifications() {
         return service.findAll();
     }
@@ -39,8 +42,8 @@ public class NotificationController {
     }
 
     @PostMapping("/notification/schedule")
-    public Notification scheduleNotification(@RequestBody Notification notification) {
-        // Aquí puedes implementar lógica para programar envío
-        return service.save(notification);
+    public ResponseEntity<MessageDTO> scheduleNotification(@RequestBody Notification notification) {
+        // Aquí puedes implementar lógica para programar envío debo realizarlo por mail y por SMS
+        return ResponseEntity.ok(new MessageDTO<>(false,"Send notification"));
     }
 }
